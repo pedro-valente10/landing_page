@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mel & Açúcar — Doceria Caseira</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #FDF6EE;
+      --sand:     #F2E4CE;
+      --caramel:  #C8854A;
+      --brown:    #7B4F2E;
+      --dark:     #3A2216;
+      --white:    #FFFFFF;
+      --rose:     #E8B4A0;
+      --text:     #4A2E1A;
+      --muted:    #9A7A60;
+      --radius:   12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(253, 246, 238, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--sand);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5%;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--brown);
+      text-decoration: none;
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--caramel); }
+
+    /* ── FLOATING CONTACT BUTTON ─────────────────────────── */
+    .btn-float {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 200;
+      background: var(--caramel);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      padding: 14px 26px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(200, 133, 74, 0.45);
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-float:hover {
+      background: var(--brown);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(123, 79, 46, 0.4);
+    }
+
+    .btn-float svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 5% 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--sand);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .hero-bg-circle.c1 { width: 500px; height: 500px; top: -100px; right: -150px; }
+    .hero-bg-circle.c2 { width: 300px; height: 300px; bottom: 40px; left: -80px; }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--sand);
+      color: var(--caramel);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 50px;
+      padding: 6px 18px;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--rose);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      color: var(--dark);
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 em {
+      color: var(--caramel);
+      font-style: italic;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--dark);
+      color: var(--cream);
+      text-decoration: none;
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .hero-cta:hover {
+      background: var(--caramel);
+      transform: translateY(-2px);
+    }
+
+    /* ── DIVIDER ─────────────────────────────────────────── */
+    .divider {
+      text-align: center;
+      color: var(--caramel);
+      font-size: 1.6rem;
+      letter-spacing: 0.4em;
+      padding: 0.5rem 0;
+      opacity: 0.5;
+    }
+
+    /* ── HISTÓRIA ────────────────────────────────────────── */
+    #historia {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 100px 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .historia-img-wrap {
+      position: relative;
+    }
+
+    .historia-img {
+      width: 100%;
+      border-radius: var(--radius);
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      background: var(--sand);
+      display: block;
+    }
+
+    .historia-img-placeholder {
+      width: 100%;
+      border-radius: var(--radius);
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, var(--sand) 0%, var(--rose) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--brown);
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      gap: 0.5rem;
+      font-style: italic;
+    }
+
+    .historia-img-placeholder .icon {
+      font-size: 2.5rem;
+    }
+
+    .historia-accent {
+      position: absolute;
+      width: 120px; height: 120px;
+      background: var(--caramel);
+      border-radius: 50%;
+      bottom: -24px; right: -24px;
+      z-index: -1;
+      opacity: 0.25;
+    }
+
+    .historia-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--caramel);
+      margin-bottom: 1rem;
+    }
+
+    .historia-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--dark);
+      line-height: 1.25;
+      margin-bottom: 1.2rem;
+    }
+
+    .historia-text p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+
+    .historia-text p:last-child { margin-bottom: 0; }
+
+    .historia-assinatura {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--caramel);
+      margin-top: 1.5rem;
+    }
+
+    /* ── CATÁLOGO ────────────────────────────────────────── */
+    #catalogo {
+      background: var(--sand);
+      padding: 100px 5%;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-header .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--caramel);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--dark);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 460px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 3rem;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1.5px solid var(--caramel);
+      color: var(--caramel);
+      border-radius: 50px;
+      padding: 8px 20px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--caramel);
+      color: var(--white);
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(58, 34, 22, 0.12);
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      background: var(--sand);
+      display: block;
+    }
+
+    .card-img-placeholder {
+      width: 100%;
+      aspect-ratio: 1/1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      background: linear-gradient(135deg, var(--sand) 0%, var(--cream) 100%);
+    }
+
+    .card-body {
+      padding: 1.2rem 1.4rem 1.5rem;
+    }
+
+    .card-category {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--caramel);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--brown);
+      font-weight: 700;
+    }
+
+    .card-btn {
+      background: var(--caramel);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      padding: 7px 16px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .card-btn:hover { background: var(--brown); }
+
+    /* ── CONTATO ─────────────────────────────────────────── */
+    #contato {
+      padding: 100px 5%;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    #contato h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    #contato > p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: left;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      background: var(--white);
+      border: 1.5px solid var(--sand);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--caramel);
+    }
+
+    .contact-form textarea { resize: vertical; min-height: 130px; }
+
+    .form-submit {
+      background: var(--dark);
+      color: var(--cream);
+      border: none;
+      border-radius: 50px;
+      padding: 16px 40px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      align-self: center;
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .form-submit:hover {
+      background: var(--caramel);
+      transform: translateY(-2px);
+    }
+
+    .contact-channels {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .channel-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .channel-link:hover { color: var(--caramel); }
+
+    .channel-link svg {
+      width: 20px; height: 20px;
+      fill: none; stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      color: rgba(253, 246, 238, 0.5);
+      text-align: center;
+      padding: 2.5rem 5%;
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+
+    footer strong {
+      color: var(--cream);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 700px) {
+      #historia {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 70px 5%;
+      }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .nav-links { display: none; }
+
+      .btn-float { bottom: 20px; right: 20px; padding: 12px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav>
+    <a class="nav-logo" href="#">Mel & Açúcar</a>
+    <ul class="nav-links">
+      <li><a href="#historia">Nossa História</a></li>
+      <li><a href="#catalogo">Cardápio</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── BOTÃO FLUTUANTE DE CONTATO ── -->
+  <a class="btn-float" href="#contato">
+    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    Fazer Pedido
+  </a>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg-circle c1"></div>
+    <div class="hero-bg-circle c2"></div>
+    <div class="hero-badge">✦ Feito com amor desde 2015 ✦</div>
+    <h1>Doces que <em>abraçam</em><br>a alma</h1>
+    <p>Receitas artesanais transmitidas de geração em geração, com ingredientes selecionados e muito carinho em cada detalhe.</p>
+    <a class="hero-cta" href="#catalogo">Ver Cardápio</a>
+  </section>
+
+  <div class="divider">✦ ✦ ✦</div>
+
+  <!-- ── HISTÓRIA ── -->
+  <section id="historia">
+    <div class="historia-img-wrap">
+      <!-- Substitua por <img class="historia-img" src="sua-foto.jpg" alt="Fundadora da Mel & Açúcar" /> -->
+      <div class="historia-img-placeholder">
+        <span class="icon">🍰</span>
+        <span>Foto da doceira aqui</span>
+      </div>
+      <div class="historia-accent"></div>
+    </div>
+    <div class="historia-text">
+      <span class="historia-tag">✦ Nossa história</span>
+      <h2>Nascida na cozinha da vovó</h2>
+      <p>Tudo começou com um caderninho de receitas, um fogão à lenha e o aroma inconfundível de bolo de fubá no ar. Ana Luísa cresceu vendo a avó transformar ingredientes simples em memórias afetivas.</p>
+      <p>Em 2015, depois de anos aperfeiçoando cada receita, ela transformou essa paixão em um negócio real: a <strong>Mel & Açúcar</strong>. Hoje, cada doce carrega a mesma dedicação de sempre — feito à mão, com ingredientes frescos e ingrediente secreto: amor.</p>
+      <p>Atendemos encomendas para festas, casamentos, presentes corporativos e aquele carinho do dia a dia.</p>
+      <div class="historia-assinatura">— Ana Luísa, fundadora</div>
+    </div>
+  </section>
+
+  <div class="divider">✦ ✦ ✦</div>
+
+  <!-- ── CATÁLOGO ── -->
+  <section id="catalogo">
+    <div class="section-header">
+      <span class="tag">✦ Cardápio</span>
+      <h2>Nossos Doces</h2>
+      <p>Tudo feito na hora, com ingredientes frescos. Encomendas com 48h de antecedência.</p>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="todos" onclick="filtrarCards(this, 'todos')">Todos</button>
+      <button class="filter-btn" data-filter="bolos" onclick="filtrarCards(this, 'bolos')">Bolos</button>
+      <button class="filter-btn" data-filter="tortas" onclick="filtrarCards(this, 'tortas')">Tortas</button>
+      <button class="filter-btn" data-filter="bombons" onclick="filtrarCards(this, 'bombons')">Bombons</button>
+      <button class="filter-btn" data-filter="especiais" onclick="filtrarCards(this, 'especiais')">Especiais</button>
+    </div>
+
+    <div class="catalog-grid" id="catalogGrid">
+
+      <!-- PRODUTO 1 -->
+      <div class="card" data-categoria="bolos">
+        <!-- <img class="card-img" src="bolo-cenoura.jpg" alt="Bolo de Cenoura com Ganache"> -->
+        <div class="card-img-placeholder">🥕</div>
+        <div class="card-body">
+          <div class="card-category">Bolos</div>
+          <div class="card-name">Bolo de Cenoura com Ganache</div>
+          <div class="card-desc">Massa fofinha de cenoura coberta com cobertura de chocolate meio amargo. Clássico irresistível.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 75,00</span>
+            <button class="card-btn" onclick="pedirProduto('Bolo de Cenoura com Ganache')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUTO 2 -->
+      <div class="card" data-categoria="tortas">
+        <!-- <img class="card-img" src="torta-limao.jpg" alt="Torta de Limão Siciliano"> -->
+        <div class="card-img-placeholder">🍋</div>
+        <div class="card-body">
+          <div class="card-category">Tortas</div>
+          <div class="card-name">Torta de Limão Siciliano</div>
+          <div class="card-desc">Creme de limão siciliano fresco sobre base crocante de biscoito amanteigado e merengue italiano.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 85,00</span>
+            <button class="card-btn" onclick="pedirProduto('Torta de Limão Siciliano')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUTO 3 -->
+      <div class="card" data-categoria="bombons">
+        <!-- <img class="card-img" src="caixa-bombons.jpg" alt="Caixa de Bombons Artesanais"> -->
+        <div class="card-img-placeholder">🍫</div>
+        <div class="card-body">
+          <div class="card-category">Bombons</div>
+          <div class="card-name">Caixa de Bombons Artesanais</div>
+          <div class="card-desc">Caixa com 12 bombons recheados: brigadeiro gourmet, maracujá, castanha e frutas vermelhas.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 60,00</span>
+            <button class="card-btn" onclick="pedirProduto('Caixa de Bombons Artesanais')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUTO 4 -->
+      <div class="card" data-categoria="bolos">
+        <!-- <img class="card-img" src="bolo-red-velvet.jpg" alt="Red Velvet"> -->
+        <div class="card-img-placeholder">🎂</div>
+        <div class="card-body">
+          <div class="card-category">Bolos</div>
+          <div class="card-name">Red Velvet com Cream Cheese</div>
+          <div class="card-desc">Bolo aveludado de baunilha tingido de vermelho com recheio e cobertura de cream cheese suave.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 90,00</span>
+            <button class="card-btn" onclick="pedirProduto('Red Velvet com Cream Cheese')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUTO 5 -->
+      <div class="card" data-categoria="especiais">
+        <!-- <img class="card-img" src="bento-cake.jpg" alt="Bento Cake Personalizado"> -->
+        <div class="card-img-placeholder">🎁</div>
+        <div class="card-body">
+          <div class="card-category">Especiais</div>
+          <div class="card-name">Bento Cake Personalizado</div>
+          <div class="card-desc">Mini bolo decorado com mensagem personalizada. Ideal para presentear. Sabores à escolha.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 45,00</span>
+            <button class="card-btn" onclick="pedirProduto('Bento Cake Personalizado')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUTO 6 -->
+      <div class="card" data-categoria="tortas">
+        <!-- <img class="card-img" src="torta-morango.jpg" alt="Torta de Morango"> -->
+        <div class="card-img-placeholder">🍓</div>
+        <div class="card-body">
+          <div class="card-category">Tortas</div>
+          <div class="card-name">Torta de Morango com Chantilly</div>
+          <div class="card-desc">Pão de ló macio, creme de baunilha, morangos frescos da estação e chantilly artesanal.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 80,00</span>
+            <button class="card-btn" onclick="pedirProduto('Torta de Morango com Chantilly')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider" style="padding: 2rem 0;">✦ ✦ ✦</div>
+
+  <!-- ── CONTATO ── -->
+  <section id="contato">
+    <div class="section-header">
+      <span class="tag">✦ Fale conosco</span>
+      <h2>Faça sua Encomenda</h2>
+    </div>
+    <p>Preencha o formulário abaixo ou nos chame pelo WhatsApp. Respondemos em até 2 horas nos dias úteis.</p>
+
+    <form class="contact-form" onsubmit="enviarFormulario(event)">
+      <div class="form-row">
+        <input type="text" placeholder="Seu nome" required />
+        <input type="tel" placeholder="WhatsApp / Telefone" required />
+      </div>
+      <input type="email" placeholder="Seu e-mail" required />
+      <input type="text" placeholder="Produto desejado (ex: Bolo de Cenoura, 2kg)" />
+      <textarea placeholder="Descreva seu pedido, data da entrega, personalizações..." required></textarea>
+      <button type="submit" class="form-submit">Enviar Pedido ✦</button>
+    </form>
+
+    <div class="contact-channels">
+      <a class="channel-link" href="https://wa.me/5511999999999" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        WhatsApp
+      </a>
+      <a class="channel-link" href="https://instagram.com/melacucar" target="_blank">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @melacucar
+      </a>
+      <a class="channel-link" href="mailto:contato@melacucar.com.br">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        contato@melacucar.com.br
+      </a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <strong>Mel & Açúcar</strong> — Doceria Caseira<br>
+    Feito com amor ✦ Rio de Janeiro, RJ<br>
+    <span style="font-size:0.78rem;">© 2024 Mel & Açúcar. Todos os direitos reservados.</span>
+  </footer>
+
+  <script>
+    function filtrarCards(btn, categoria) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      document.querySelectorAll('.card').forEach(card => {
+        if (categoria === 'todos' || card.dataset.categoria === categoria) {
+          card.style.display = '';
+          card.style.animation = 'none';
+          card.offsetHeight;
+          card.style.animation = 'fadeIn 0.3s ease forwards';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function pedirProduto(nome) {
+      const el = document.getElementById('contato');
+      el.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        const input = el.querySelector('input[placeholder*="Produto"]');
+        if (input) {
+          input.value = nome;
+          input.focus();
+        }
+      }, 600);
+    }
+
+    function enviarFormulario(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = 'Pedido enviado! ✓';
+      btn.style.background = '#5a8a3e';
+      setTimeout(() => {
+        btn.textContent = 'Enviar Pedido ✦';
+        btn.style.background = '';
+        e.target.reset();
+      }, 3000);
+    }
+
+    const style = document.createElement('style');
+    style.textContent = `@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }`;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
