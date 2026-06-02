@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mel & Açúcar — Doceria Caseira</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav>
+    <a class="nav-logo" href="#">Mel & Açúcar</a>
+    <ul class="nav-links">
+      <li><a href="#historia">Nossa História</a></li>
+      <li><a href="#catalogo">Cardápio</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── BOTÃO FLUTUANTE DE CONTATO ── -->
+  <a class="btn-float" href="#contato">
+    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    Fazer Pedido
+  </a>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg-circle c1"></div>
+    <div class="hero-bg-circle c2"></div>
+    <div class="hero-badge">✦ Feito com amor desde 2015 ✦</div>
+    <h1>Doces que <em>abraçam</em><br>a alma</h1>
+    <p>Receitas artesanais transmitidas de geração em geração, com ingredientes selecionados e muito carinho em cada detalhe.</p>
+    <a class="hero-cta" href="#catalogo">Ver Cardápio</a>
+  </section>
+
+  <div class="divider">✦ ✦ ✦</div>
+
+  <!-- ── HISTÓRIA ── -->
+  <section id="historia">
+    <div class="historia-img-wrap">
+      <!-- Substitua por <img class="historia-img" src="sua-foto.jpg" alt="Fundadora da Mel & Açúcar" /> -->
+      <div class="historia-img-placeholder">
+        <span class="icon">🍰</span>
+        <span>Foto da doceira aqui</span>
+      </div>
+      <div class="historia-accent"></div>
+    </div>
+    <div class="historia-text">
+      <span class="historia-tag">✦ Nossa história</span>
+      <h2>Nascida na cozinha da vovó</h2>
+      <p>Tudo começou com um caderninho de receitas, um fogão à lenha e o aroma inconfundível de bolo de fubá no ar. Ana Luísa cresceu vendo a avó transformar ingredientes simples em memórias afetivas.</p>
+      <p>Em 2015, depois de anos aperfeiçoando cada receita, ela transformou essa paixão em um negócio real: a <strong>Mel & Açúcar</strong>. Hoje, cada doce carrega a mesma dedicação de sempre — feito à mão, com ingredientes frescos e ingrediente secreto: amor.</p>
+      <p>Atendemos encomendas para festas, casamentos, presentes corporativos e aquele carinho do dia a dia.</p>
+      <div class="historia-assinatura">— Ana Luísa, fundadora</div>
+    </div>
+  </section>
+
+  <div class="divider">✦ ✦ ✦</div>
+
+  <!-- ── CATÁLOGO ── -->
+  <section id="catalogo">
+    <div class="section-header">
+      <span class="tag">✦ Cardápio</span>
+      <h2>Nossos Doces</h2>
+      <p>Tudo feito na hora, com ingredientes frescos. Encomendas com 48h de antecedência.</p>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="todos" onclick="filtrarCards(this, 'todos')">Todos</button>
+      <button class="filter-btn" data-filter="bolos" onclick="filtrarCards(this, 'bolos')">Bolos</button>
+      <button class="filter-btn" data-filter="tortas" onclick="filtrarCards(this, 'tortas')">Tortas</button>
+      <button class="filter-btn" data-filter="bombons" onclick="filtrarCards(this, 'bombons')">Bombons</button>
+      <button class="filter-btn" data-filter="especiais" onclick="filtrarCards(this, 'especiais')">Especiais</button>
+    </div>
+
+    <div class="catalog-grid" id="catalogGrid">
+
+      <!-- PRODUTO 1 -->
+      <div class="card" data-categoria="bolos">
+        <!-- <img class="card-img" src="bolo-cenoura.jpg" alt="Bolo de Cenoura com Ganache"> -->
+        <div class="card-img-placeholder">🥕</div>
+        <div class="card-body">
+          <div class="card-category">Bolos</div>
+          <div class="card-name">Bolo de Cenoura com Ganache</div>
+          <div class="card-desc">Massa fofinha de cenoura coberta com cobertura de chocolate meio amargo. Clássico irresistível.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 75,00</span>
+            <button class="card-btn" onclick="pedirProduto('Bolo de Cenoura com Ganache')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUTO 2 -->
+      <div class="card" data-categoria="tortas">
+        <!-- <img class="card-img" src="torta-limao.jpg" alt="Torta de Limão Siciliano"> -->
+        <div class="card-img-placeholder">🍋</div>
+        <div class="card-body">
+          <div class="card-category">Tortas</div>
+          <div class="card-name">Torta de Limão Siciliano</div>
+          <div class="card-desc">Creme de limão siciliano fresco sobre base crocante de biscoito amanteigado e merengue italiano.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 85,00</span>
+            <button class="card-btn" onclick="pedirProduto('Torta de Limão Siciliano')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUTO 3 -->
+      <div class="card" data-categoria="bombons">
+        <!-- <img class="card-img" src="caixa-bombons.jpg" alt="Caixa de Bombons Artesanais"> -->
+        <div class="card-img-placeholder">🍫</div>
+        <div class="card-body">
+          <div class="card-category">Bombons</div>
+          <div class="card-name">Caixa de Bombons Artesanais</div>
+          <div class="card-desc">Caixa com 12 bombons recheados: brigadeiro gourmet, maracujá, castanha e frutas vermelhas.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 60,00</span>
+            <button class="card-btn" onclick="pedirProduto('Caixa de Bombons Artesanais')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUTO 4 -->
+      <div class="card" data-categoria="bolos">
+        <!-- <img class="card-img" src="bolo-red-velvet.jpg" alt="Red Velvet"> -->
+        <div class="card-img-placeholder">🎂</div>
+        <div class="card-body">
+          <div class="card-category">Bolos</div>
+          <div class="card-name">Red Velvet com Cream Cheese</div>
+          <div class="card-desc">Bolo aveludado de baunilha tingido de vermelho com recheio e cobertura de cream cheese suave.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 90,00</span>
+            <button class="card-btn" onclick="pedirProduto('Red Velvet com Cream Cheese')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUTO 5 -->
+      <div class="card" data-categoria="especiais">
+        <!-- <img class="card-img" src="bento-cake.jpg" alt="Bento Cake Personalizado"> -->
+        <div class="card-img-placeholder">🎁</div>
+        <div class="card-body">
+          <div class="card-category">Especiais</div>
+          <div class="card-name">Bento Cake Personalizado</div>
+          <div class="card-desc">Mini bolo decorado com mensagem personalizada. Ideal para presentear. Sabores à escolha.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 45,00</span>
+            <button class="card-btn" onclick="pedirProduto('Bento Cake Personalizado')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRODUTO 6 -->
+      <div class="card" data-categoria="tortas">
+        <!-- <img class="card-img" src="torta-morango.jpg" alt="Torta de Morango"> -->
+        <div class="card-img-placeholder">🍓</div>
+        <div class="card-body">
+          <div class="card-category">Tortas</div>
+          <div class="card-name">Torta de Morango com Chantilly</div>
+          <div class="card-desc">Pão de ló macio, creme de baunilha, morangos frescos da estação e chantilly artesanal.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 80,00</span>
+            <button class="card-btn" onclick="pedirProduto('Torta de Morango com Chantilly')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider" style="padding: 2rem 0;">✦ ✦ ✦</div>
+
+  <!-- ── CONTATO ── -->
+  <section id="contato">
+    <div class="section-header">
+      <span class="tag">✦ Fale conosco</span>
+      <h2>Faça sua Encomenda</h2>
+    </div>
+    <p>Preencha o formulário abaixo ou nos chame pelo WhatsApp. Respondemos em até 2 horas nos dias úteis.</p>
+
+    <form class="contact-form" onsubmit="enviarFormulario(event)">
+      <div class="form-row">
+        <input type="text" placeholder="Seu nome" required />
+        <input type="tel" placeholder="WhatsApp / Telefone" required />
+      </div>
+      <input type="email" placeholder="Seu e-mail" required />
+      <input type="text" placeholder="Produto desejado (ex: Bolo de Cenoura, 2kg)" />
+      <textarea placeholder="Descreva seu pedido, data da entrega, personalizações..." required></textarea>
+      <button type="submit" class="form-submit">Enviar Pedido ✦</button>
+    </form>
+
+    <div class="contact-channels">
+      <a class="channel-link" href="https://wa.me/5511999999999" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        WhatsApp
+      </a>
+      <a class="channel-link" href="https://instagram.com/melacucar" target="_blank">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @melacucar
+      </a>
+      <a class="channel-link" href="mailto:contato@melacucar.com.br">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        contato@melacucar.com.br
+      </a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <strong>Mel & Açúcar</strong> — Doceria Caseira<br>
+    Feito com amor ✦ Rio de Janeiro, RJ<br>
+    <span style="font-size:0.78rem;">© 2024 Mel & Açúcar. Todos os direitos reservados.</span>
+  </footer>
+</body>
+</html>
