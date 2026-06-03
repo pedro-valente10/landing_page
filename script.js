@@ -26,17 +26,6 @@ function pedirProduto(nome) {
     }, 600);
 }
 
-function enviarFormulario(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.form-submit');
-    btn.textContent = 'Pedido enviado! ✓';
-    btn.style.background = '#5a8a3e';
-    setTimeout(() => {
-    btn.textContent = 'Enviar Pedido ✦';
-    btn.style.background = '';
-    e.target.reset();
-    }, 3000);
-}
 
 const style = document.createElement('style');
 style.textContent = `@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }`;
