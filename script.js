@@ -15,15 +15,8 @@ function filtrarCards(btn, categoria) {
     }
 
 function pedirProduto(nome) {
-    const el = document.getElementById('contato');
-    el.scrollIntoView({ behavior: 'smooth' });
-    setTimeout(() => {
-    const input = el.querySelector('input[placeholder*="Produto"]');
-    if (input) {
-        input.value = nome;
-        input.focus();
-    }
-    }, 600);
+  const msg = encodeURIComponent('Olá! Gostaria de fazer um pedido: ' + nome);
+  window.open('https://wa.me/5511999999999?text=' + msg, '_blank');
 }
 
 

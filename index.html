@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Doce Aqui — Doceria Caseira</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
-  <link rel="icon" href="DoceAqui_icone.ico" type="image/x-icon">
+  <link rel="icon" type="image/x-icon" href="assets/DoceAqui_icone.ico">
+  <link rel="apple-touch-icon" href="assets/DoceAqui_logo.png">
+  <link rel="shortcut icon" href="assets/DoceAqui_icone.ico">
   <link rel="stylesheet" href="styles.css">
 
 </head>
@@ -13,7 +15,10 @@
 
   <!-- ── NAVBAR ── -->
   <nav>
-    <a class="nav-logo" href="#">Doce Aqui</a>
+    <a class="nav-logo" href="#">
+      <img src="assets/DoceAqui_logo.png" alt="Logo Doce Aqui">
+      Doce Aqui
+    </a>
     <ul class="nav-links">
       <li><a href="#historia">Nossa História</a></li>
       <li><a href="#catalogo">Cardápio</a></li>
@@ -33,7 +38,7 @@
   <section class="hero">
     <div class="hero-bg-circle c1"></div>
     <div class="hero-bg-circle c2"></div>
-    <div class="hero-badge">✦ Feito com amor desde 2024 ✦</div>
+    <div class="hero-badge">✦ Feito com amor desde 2015 ✦</div>
     <h1>Doces que <em>abraçam</em><br>a alma</h1>
     <p>Receitas artesanais transmitidas de geração em geração, com ingredientes selecionados e muito carinho em cada detalhe.</p>
     <a class="hero-cta" href="#catalogo">Ver Cardápio</a>
@@ -72,18 +77,55 @@
     </div>
 
   <div class="filter-bar">
-      <button class="filter-btn active" data-filter="todos" onclick="filtrarCards(this, 'todos')">Todos</button>
-      <button class="filter-btn" data-filter="macarons" onclick="filtrarCards(this, 'macarons')">Macarons</button>
-      <button class="filter-btn" data-filter="bolos" onclick="filtrarCards(this, 'bolos')">Bolos</button>
-      <button class="filter-btn" data-filter="tradicionais" onclick="filtrarCards(this, 'tradicionais')">Sonhos & Folheados</button>
+    <button class="filter-btn active" data-filter="macarrons"  onclick="filtrarCards(this,'macarrons')">Macarrons</button>
+    <button class="filter-btn"        data-filter="bolos"      onclick="filtrarCards(this,'bolos')">Bolos</button>
+    <button class="filter-btn"        data-filter="sonhos"     onclick="filtrarCards(this,'sonhos')">Sonhos</button>
+    <button class="filter-btn"        data-filter="folhados"  onclick="filtrarCards(this,'folhados')">Folhados</button>
   </div>
 
     <div class="catalog-grid" id="catalogGrid">
 
-      <!-- PRODUTO 1 -->
-      <div class="card" data-categoria="bolos">
-        <!-- <img class="card-img" src="bolo-cenoura.jpg" alt="Bolo de Cenoura com Ganache"> -->
-        <div class="card-img-placeholder">🥕</div>
+      <div class="card" data-categoria="macarrons">
+        <img src="assets/macarron_pistache.png" class="card-img" alt="Foto Macarron de Pistache">
+        <div class="card-body">
+          <div class="card-category">Macarrons</div>
+          <div class="card-name">Macarron de Pistache</div>
+          <div class="card-desc">Massa delicada com recheio cremoso de pistache. Sabor sofisticado e irresistível.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 12,00</span>
+            <button class="card-btn" onclick="pedirProduto('Macarron de Pistache')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-categoria="macarrons">
+        <img src="assets/macarron_chocolate.png" class="card-img" alt="Macarron de chocolate">
+        <div class="card-body">
+          <div class="card-category">Macarrons</div>
+          <div class="card-name">Macarron de Chocolate</div>
+          <div class="card-desc">Casca crocante de cacau com ganache de chocolate meio amargo por dentro.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 12,00</span>
+            <button class="card-btn" onclick="pedirProduto('Macarron de Chocolate')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-categoria="macarrons">
+        <img src="assets/macarron_morango.png" class="card-img" alt="Macarron de morango">
+        <div class="card-body">
+          <div class="card-category">Macarrons</div>
+          <div class="card-name">Macarron de Morango</div>
+          <div class="card-desc">Casca rosada com recheio de creme de morango fresco. Leve e perfumado.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 12,00</span>
+            <button class="card-btn" onclick="pedirProduto('Macarron de Morango')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-categoria="bolos" style="display:none">
+        <img src="assets/bolo_cenoura.png" class="card-img" alt="Bolo de cenoura">
         <div class="card-body">
           <div class="card-category">Bolos</div>
           <div class="card-name">Bolo de Cenoura com Ganache</div>
@@ -95,77 +137,67 @@
         </div>
       </div>
 
-      <!-- PRODUTO 2 -->
-      <div class="card" data-categoria="tortas">
-        <!-- <img class="card-img" src="torta-limao.jpg" alt="Torta de Limão Siciliano"> -->
-        <div class="card-img-placeholder">🍋</div>
-        <div class="card-body">
-          <div class="card-category">Tortas</div>
-          <div class="card-name">Torta de Limão Siciliano</div>
-          <div class="card-desc">Creme de limão siciliano fresco sobre base crocante de biscoito amanteigado e merengue italiano.</div>
-          <div class="card-footer">
-            <span class="card-price">R$ 85,00</span>
-            <button class="card-btn" onclick="pedirProduto('Torta de Limão Siciliano')">Pedir</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- PRODUTO 3 -->
-      <div class="card" data-categoria="bombons">
-        <!-- <img class="card-img" src="caixa-bombons.jpg" alt="Caixa de Bombons Artesanais"> -->
-        <div class="card-img-placeholder">🍫</div>
-        <div class="card-body">
-          <div class="card-category">Bombons</div>
-          <div class="card-name">Caixa de Bombons Artesanais</div>
-          <div class="card-desc">Caixa com 12 bombons recheados: brigadeiro gourmet, maracujá, castanha e frutas vermelhas.</div>
-          <div class="card-footer">
-            <span class="card-price">R$ 60,00</span>
-            <button class="card-btn" onclick="pedirProduto('Caixa de Bombons Artesanais')">Pedir</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- PRODUTO 4 -->
-      <div class="card" data-categoria="bolos">
-        <!-- <img class="card-img" src="bolo-red-velvet.jpg" alt="Red Velvet"> -->
-        <div class="card-img-placeholder">🎂</div>
+      <div class="card" data-categoria="bolos" style="display:none">
+        <img src="assets/bolo_brigadeiro.png" class="card-img" alt="Bolo de brigadeiro">
         <div class="card-body">
           <div class="card-category">Bolos</div>
-          <div class="card-name">Red Velvet com Cream Cheese</div>
-          <div class="card-desc">Bolo aveludado de baunilha tingido de vermelho com recheio e cobertura de cream cheese suave.</div>
-          <div class="card-footer">
-            <span class="card-price">R$ 90,00</span>
-            <button class="card-btn" onclick="pedirProduto('Red Velvet com Cream Cheese')">Pedir</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- PRODUTO 5 -->
-      <div class="card" data-categoria="especiais">
-        <!-- <img class="card-img" src="bento-cake.jpg" alt="Bento Cake Personalizado"> -->
-        <div class="card-img-placeholder">🎁</div>
-        <div class="card-body">
-          <div class="card-category">Especiais</div>
-          <div class="card-name">Bento Cake Personalizado</div>
-          <div class="card-desc">Mini bolo decorado com mensagem personalizada. Ideal para presentear. Sabores à escolha.</div>
-          <div class="card-footer">
-            <span class="card-price">R$ 45,00</span>
-            <button class="card-btn" onclick="pedirProduto('Bento Cake Personalizado')">Pedir</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- PRODUTO 6 -->
-      <div class="card" data-categoria="tortas">
-        <!-- <img class="card-img" src="torta-morango.jpg" alt="Torta de Morango"> -->
-        <div class="card-img-placeholder">🍓</div>
-        <div class="card-body">
-          <div class="card-category">Tortas</div>
-          <div class="card-name">Torta de Morango com Chantilly</div>
-          <div class="card-desc">Pão de ló macio, creme de baunilha, morangos frescos da estação e chantilly artesanal.</div>
+          <div class="card-name">Bolo de Brigadeiro</div>
+          <div class="card-desc">Massa de chocolate com recheio e cobertura de brigadeiro gourmet. Puro pecado.</div>
           <div class="card-footer">
             <span class="card-price">R$ 80,00</span>
-            <button class="card-btn" onclick="pedirProduto('Torta de Morango com Chantilly')">Pedir</button>
+            <button class="card-btn" onclick="pedirProduto('Bolo de Brigadeiro')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-categoria="sonhos" style="display:none">
+        <img src="assets/sonho_doce_de_leite.png" class="card-img" alt="Sonho de doce de leite">
+        <div class="card-body">
+          <div class="card-category">Sonhos</div>
+          <div class="card-name">Sonho de Doce de Leite</div>
+          <div class="card-desc">Massa macia e fofa recheada com doce de leite cremoso. Comfort food na sua melhor forma.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 18,00</span>
+            <button class="card-btn" onclick="pedirProduto('Sonho de Doce de Leite')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-categoria="sonhos" style="display:none">
+        <img src="assets/sonho_baunilha.png" class="card-img" alt="Sonho de baunilha">
+        <div class="card-body">
+          <div class="card-category">Sonhos</div>
+          <div class="card-name">Sonho de Baunilha</div>
+          <div class="card-desc">Recheado com creme de baunilha artesanal, leve e perfumado. Clássico que nunca decepciona.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 18,00</span>
+            <button class="card-btn" onclick="pedirProduto('Sonho de Baunilha e Creme')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-categoria="folhados" style="display:none">
+        <img src="assets/folhado_mil_folhas.png" class="card-img" alt="Folhado mil folhas">
+        <div class="card-body">
+          <div class="card-category">Folhados</div>
+          <div class="card-name">Mil Folhas</div>
+          <div class="card-desc">Camadas crocantes de massa folhada intercaladas com creme de baunilha e açúcar de confeiteiro.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 22,00</span>
+            <button class="card-btn" onclick="pedirProduto('Mil Folhas')">Pedir</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-categoria="folhados" style="display:none">
+        <img src="assets/folhado_doce_de_leite.png" class="card-img" alt="Folhado de doce de leite">
+        <div class="card-body">
+          <div class="card-category">Folhados</div>
+          <div class="card-name">Folhado de Doce de Leite</div>
+          <div class="card-desc">Massa folhada crocante recheada com doce de leite cremoso. Simples e absolutamente delicioso.</div>
+          <div class="card-footer">
+            <span class="card-price">R$ 20,00</span>
+            <button class="card-btn" onclick="pedirProduto('Folhado de Doce de Leite')">Pedir</button>
           </div>
         </div>
       </div>
