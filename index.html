@@ -19,10 +19,15 @@
       <img src="assets/DoceAqui_logo.png" alt="Logo Doce Aqui">
       Doce Aqui
     </a>
-    <ul class="nav-links">
-      <li><a href="#historia">Nossa História</a></li>
-      <li><a href="#catalogo">Cardápio</a></li>
-      <li><a href="https://wa.me/5511999999999" target="_blank">Contato</a></li>
+    <button class="nav-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#historia" onclick="fecharMenu()">Nossa História</a></li>
+      <li><a href="#catalogo" onclick="fecharMenu()">Cardápio</a></li>
+      <li><a href="https://wa.me/5511999999999" target="_blank" onclick="fecharMenu()">Contato</a></li>
     </ul>
   </nav>
 

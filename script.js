@@ -23,3 +23,11 @@ function pedirProduto(nome) {
 const style = document.createElement('style');
 style.textContent = `@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }`;
 document.head.appendChild(style);
+
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('aberto');
+}
+
+function fecharMenu() {
+  document.getElementById('navLinks').classList.remove('aberto');
+}
